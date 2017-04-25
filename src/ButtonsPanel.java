@@ -23,6 +23,7 @@ public class ButtonsPanel extends JPanel {
 	private JButton stepBtn;
 	private JSlider speedSlider;
 	private JLabel	speedLabel;
+	private JLabel statePause;
 	private final String INIT = "Init";
 	private final String RUN = "Run";
 	private final String PAUSE = "Pause";
@@ -46,6 +47,9 @@ public class ButtonsPanel extends JPanel {
 		addButton(runBtn);
 		pauseBtn = new JButton(PAUSE);
 		addButton(pauseBtn);
+		statePause = new JLabel("Running");
+		statePause.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
+		add(statePause);
 		stepBtn = new JButton(STEP);
 		addButton(stepBtn);
 		clearBtn = new JButton(CLEAR);
@@ -53,6 +57,14 @@ public class ButtonsPanel extends JPanel {
 		setSlider(speed);
 	}
 	
+	public JLabel getStatePause() {
+		return statePause;
+	}
+
+	public void setStatePause(JLabel statePause) {
+		this.statePause = statePause;
+	}
+
 	/**
 	 * set up a button and add it to the panel
 	 * @param btn

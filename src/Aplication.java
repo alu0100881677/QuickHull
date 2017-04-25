@@ -67,6 +67,7 @@ public class Aplication extends JPanel {
 		mainPanel.repaint();
 		mainPanel.setIteration(0);
 		mainPanel.getIterations().clear();
+		mainPanel.setPainting(true);
 	}
 	/**
 	 * This function add Listeners to the components of the interface.
@@ -126,8 +127,14 @@ public class Aplication extends JPanel {
 		btnPanel.getPauseBtn().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boolean mode = (mainPanel.isPainting() == true) ? false : true;
+				boolean mode = mainPanel.isPainting();
+				mode = !mode;
 				mainPanel.setPainting(mode);
+				if(!mode){
+					btnPanel.getStatePause().setText("Stopped");
+				}
+				else
+					btnPanel.getStatePause().setText("Running");
 			}
 		});
 		/**

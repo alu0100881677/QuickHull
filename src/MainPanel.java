@@ -109,18 +109,22 @@ public class MainPanel extends JPanel {
 			@Override
 			public void run() {
 				int i = iteration;
-				while((i < iterations.size()) && (isPainting())){
-					Graphics g = getGraphics();
-					g.clearRect(0, 0, getWidth(), getHeight());
-					paintPoints();
-					try {
-						Thread.sleep(200);
-						paintLines(iterations.get(i));
-						Thread.sleep(speed);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+				while(i < iterations.size()){
+					System.out.println(isPainting());
+					if(isPainting()){
+						Graphics g = getGraphics();
+						g.clearRect(0, 0, getWidth(), getHeight());
+						paintPoints();
+						try {
+							Thread.sleep(200);
+							paintLines(iterations.get(i));
+							Thread.sleep(speed);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						i++;
+						iteration = i;
 					}
-					i++;
 				}
 			}
 		});
@@ -157,7 +161,7 @@ public class MainPanel extends JPanel {
 				g.setColor(Color.RED);
 				int index = 0;
 				while (index < solution.size() - 1) {
-					if (isPainting()) {
+					//if (isPainting()) {
 						g.drawLine(solution.get(index).x +1, solution.get(index).y+1, solution.get(index + 1).x+1, solution.get(index + 1).y+1);
 						g.drawLine(solution.get(index).x, solution.get(index).y,	solution.get(index + 1).x, solution.get(index + 1).y);
 						g.drawLine(solution.get(index).x-1, solution.get(index).y-1,	solution.get(index + 1).x-1, solution.get(index + 1).y-1);
@@ -171,7 +175,7 @@ public class MainPanel extends JPanel {
 						g.drawLine(solution.get(solution.size() - 1).x+1, solution.get(solution.size() - 1).y+1, solution.get(0).x+1, solution.get(0).y+1);
 						g.drawLine(solution.get(solution.size() - 1).x, solution.get(solution.size() - 1).y, solution.get(0).x, solution.get(0).y);
 						g.drawLine(solution.get(solution.size() - 1).x-1, solution.get(solution.size() - 1).y-1, solution.get(0).x-1, solution.get(0).y-1);
-					}
+					//}
 				}
 			//}
 		//});
@@ -187,7 +191,6 @@ public class MainPanel extends JPanel {
 
 	/**
 	 * @param speed
-	 *          the speed to set
 	 */
 	public void setSpeed(int speed) {
 		this.speed = Math.abs((MAX_SPEED - speed));
@@ -202,7 +205,6 @@ public class MainPanel extends JPanel {
 
 	/**
 	 * @param numOfPoints
-	 *          the numOfPoints to set
 	 */
 	public void setNumOfPoints(int numOfPoints) {
 		this.numOfPoints = numOfPoints;
@@ -212,7 +214,6 @@ public class MainPanel extends JPanel {
 
 	/**
 	 * @param points
-	 *          the points to set
 	 */
 	public void setPoints(ArrayList<Point> points) {
 		this.points = points;
@@ -234,7 +235,6 @@ public class MainPanel extends JPanel {
 
 	/**
 	 * @param solution
-	 *          the solution to set
 	 */
 	public void setSolution(ArrayList<Point> solution) {
 		this.solution = solution;
@@ -249,7 +249,6 @@ public class MainPanel extends JPanel {
 
 	/**
 	 * @param painting
-	 *          the painting to set
 	 */
 	public void setPainting(boolean painting) {
 		this.painting = painting;
@@ -268,7 +267,6 @@ public class MainPanel extends JPanel {
 
 	/**
 	 * @param step
-	 *          the step to set
 	 */
 	public void setStep(boolean step) {
 		this.step = step;
